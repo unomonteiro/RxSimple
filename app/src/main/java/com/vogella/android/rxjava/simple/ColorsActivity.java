@@ -13,6 +13,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
+
 public class ColorsActivity extends AppCompatActivity {
 
     RecyclerView colorListView;
@@ -34,7 +35,10 @@ public class ColorsActivity extends AppCompatActivity {
 
     private void configureLayout() {
         setContentView(R.layout.activity_colors);
-        colorListView.setLayoutManager(new LinearLayoutManager(this));
+        colorListView = (RecyclerView) findViewById(R.id.color_list);
+        colorListView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        colorListView.setLayoutManager(layoutManager);
         simpleStringAdapter = new SimpleStringAdapter(this);
         colorListView.setAdapter(simpleStringAdapter);
     }

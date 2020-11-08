@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,10 +15,20 @@ import java.util.List;
 /**
  * Adapter used to map a String to a text view.
  */
-public class SimpleStringAdapter extends RecyclerView.Adapter<SimpleStringAdapter.ViewHolder> {
+public class SimpleStringAdapter extends RecyclerView.Adapter<SimpleStringAdapter.MyViewHolder> {
 
     private final Context mContext;
     private final List<String> mStrings = new ArrayList<>();
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        public final TextView colorTextView;
+
+        public MyViewHolder(View view) {
+            super(view);
+            colorTextView = view.findViewById(R.id.color_display);
+        }
+    }
 
     public SimpleStringAdapter(Context context) {
         mContext = context;
@@ -31,24 +40,22 @@ public class SimpleStringAdapter extends RecyclerView.Adapter<SimpleStringAdapte
         notifyDataSetChanged();
     }
 
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.string_list_item, parent, false);
-        return new ViewHolder(view);
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.colorTextView.setText(mStrings.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Toast.makeText(mContext, mStrings.get(position), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
@@ -56,14 +63,6 @@ public class SimpleStringAdapter extends RecyclerView.Adapter<SimpleStringAdapte
         return mStrings.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView colorTextView;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            colorTextView = (TextView) itemView.findViewById(R.id.color_display);
-        }
-    }
 
 }

@@ -2,8 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/scheduleLongRunningOperation"
@@ -12,8 +11,7 @@
         android:lines="3"
         android:text="Start something long"
         android:layout_marginStart="12dp"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:id="@+id/messagearea"
@@ -21,8 +19,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:text=""
-        android:layout_below="@+id/scheduleLongRunningOperation"
-        />
+        android:layout_below="@+id/scheduleLongRunningOperation"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -31,7 +28,6 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_alignBottom="@+id/scheduleLongRunningOperation"
-        android:layout_toEndOf="@+id/scheduleLongRunningOperation"
-        />
+        android:layout_toEndOf="@+id/scheduleLongRunningOperation"/>
 
 </RelativeLayout>
